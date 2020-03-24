@@ -1,6 +1,7 @@
 <script>
   let name = ""
-  let temp = 20
+  let tempC = 20
+  $: tempF = Math.round(tempC * 1.8 + 32)
 </script>
 
 <h1>Hot Chocolate</h1>
@@ -12,15 +13,15 @@
 
 <label>
   Drink temperature:
-  <input type="range" min="0" max="100" bind:value={temp}>
+  <input type="range" min="0" max="100" bind:value={tempC}>
 </label>
 
 {#if name.length > 0}
-  <p>Hi {name}, your drink is {temp} degrees.</p>
+  <p>Hi {name}, your drink is {tempC} degrees ({tempF} degrees Fahrenheit).</p>
 
-  {#if temp < 40}
+  {#if tempC < 40}
     ... fairly tepid ❄
-  {:else if temp > 90}
+  {:else if tempC > 90}
     ... very hot!!! 🔥
   {:else}
     ... looks good ☕
